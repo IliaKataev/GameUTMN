@@ -6,7 +6,7 @@ public class MainMenuController : MonoBehaviour
     public void StartNewGame()
     {
         // Загрузка сцены с новой игрой (предварительно созданную сцену с игровым процессом)
-        SceneManager.LoadScene("Bar");
+        SceneManager.LoadScene(1);
     }
 
     public void LoadGame()

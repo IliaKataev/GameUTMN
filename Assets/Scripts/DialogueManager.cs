@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using System.IO;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -23,8 +22,8 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        // Если текст еще не отображается и нажата кнопка мыши
-        if (!isTyping && Input.GetMouseButtonDown(0))
+        // Проверяем, находится ли мышь над текстом диалога и был ли произведен клик
+        if (!isTyping && Input.GetMouseButtonDown(0) && RectTransformUtility.RectangleContainsScreenPoint(dialogueText.rectTransform, Input.mousePosition, Camera.main))
         {
             // Перейдите к следующей реплике или завершите диалог, если это была последняя реплика
             if (currentDialogueIndex < dialogues.Length - 1)
@@ -55,10 +54,10 @@ public class DialogueManager : MonoBehaviour
     void LoadDialoguesFromFile(string filePath)
     {
         // Проверяем, существует ли файл
-        if (File.Exists(filePath))
+        if (System.IO.File.Exists(filePath))
         {
             // Читаем все строки из файла
-            string[] lines = File.ReadAllLines(filePath);
+            string[] lines = System.IO.File.ReadAllLines(filePath);
             // Создаем массив для реплик
             dialogues = new string[lines.Length];
             // Копируем строки в массив реплик
