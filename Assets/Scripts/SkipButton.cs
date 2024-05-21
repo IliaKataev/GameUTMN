@@ -6,7 +6,7 @@ public class SkipTutorial : MonoBehaviour
 {
     public void SkipToNextScene()
     {
-        SceneManager.LoadScene("MakingDrinks");
+        SceneManager.LoadScene("levels");
     }
 
     

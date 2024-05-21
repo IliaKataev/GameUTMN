@@ -8,7 +8,6 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public float typingSpeed = 0.1f;
     public string dialogueFilePath = "Assets/bartender/BIM.txt";
-    public string nextSceneName = "MakingDrinks"; // Имя следующей сцены
 
     private string[] dialogues;
     private int currentDialogueIndex = 0;
@@ -64,6 +63,6 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        SceneManager.LoadScene(nextSceneName); // Переход на следующую сцену
+        SceneManager.LoadScene("levels"); // Переход на следующую сцену
     }
 }
