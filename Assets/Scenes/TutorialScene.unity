@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 402361941}
   - component: {fileID: 402361940}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BlackBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -775,6 +775,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1220501032}
   typingSpeed: 0.009
   dialogueFilePath: Assets/BIM.txt
+  nextSceneName: MakingDrinks
 --- !u!4 &1861358379
 Transform:
   m_ObjectHideFlags: 0

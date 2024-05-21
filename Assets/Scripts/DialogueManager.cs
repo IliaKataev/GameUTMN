@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;
     public float typingSpeed = 0.1f;
     public string dialogueFilePath = "Assets/bartender/BIM.txt";
+    public string nextSceneName = "MakingDrinks"; // Имя следующей сцены
 
     private string[] dialogues;
     private int currentDialogueIndex = 0;
@@ -14,18 +16,15 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        // Прочитайте реплики из файла
         LoadDialoguesFromFile(dialogueFilePath);
-        // Начните отображение первой реплики
         StartCoroutine(DisplayNextDialogue());
     }
 
     void Update()
     {
-        // Проверяем, находится ли мышь над текстом диалога и был ли произведен клик
-        if (!isTyping && Input.GetMouseButtonDown(0) && RectTransformUtility.RectangleContainsScreenPoint(dialogueText.rectTransform, Input.mousePosition, Camera.main))
+        // Проверяем, был ли произведен клик левой кнопкой мыши
+        if (Input.GetMouseButtonDown(0) && !isTyping)
         {
-            // Перейдите к следующей реплике или завершите диалог, если это была последняя реплика
             if (currentDialogueIndex < dialogues.Length - 1)
             {
                 currentDialogueIndex++;
@@ -33,7 +32,6 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                // Завершение диалога
                 EndDialogue();
             }
         }
@@ -53,18 +51,10 @@ public class DialogueManager : MonoBehaviour
 
     void LoadDialoguesFromFile(string filePath)
     {
-        // Проверяем, существует ли файл
         if (System.IO.File.Exists(filePath))
         {
-            // Читаем все строки из файла
             string[] lines = System.IO.File.ReadAllLines(filePath);
-            // Создаем массив для реплик
-            dialogues = new string[lines.Length];
-            // Копируем строки в массив реплик
-            for (int i = 0; i < lines.Length; i++)
-            {
-                dialogues[i] = lines[i];
-            }
+            dialogues = lines;
         }
         else
         {
@@ -74,7 +64,6 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        // Ваша логика завершения диалога
-        Debug.Log("Диалог завершен.");
+        SceneManager.LoadScene(nextSceneName); // Переход на следующую сцену
     }
 }

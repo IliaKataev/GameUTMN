@@ -1,83 +1,104 @@
-using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using Unity.VisualScripting;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class OrderManager : MonoBehaviour
 {
-    private List<Order> orders = new List<Order>();
+    public Text orderText;  // UI Text component to display the order
+    public string recipeFilePath = "Assets/drinks/DIF.txt";  // Path to the recipe file
+    private List<DrinkRecipe> recipes;  // List to store the drink recipes
+    private int currentRecipeIndex = 0;  // Index to track the current recipe
+    public Text coinText;  // Text component to display coin count
+    private int coinCount = 0;  // Counter for coins
 
     void Start()
     {
-        LoadOrdersFromFile("Assets/Drinks/DIF.txt");
+        // Load the recipes from the file when the game starts
+        LoadRecipesFromFile(recipeFilePath);
+        // Display the first order
+        DisplayNextOrder();
+        // Initialize coin display
+        UpdateCoinText();
     }
 
-    void LoadOrdersFromFile(string fileName)
+    void LoadRecipesFromFile(string filePath)
     {
-        TextAsset file = Resources.Load<TextAsset>(fileName);
-        if (file != null)
+        recipes = new List<DrinkRecipe>();
+
+        // Read all lines from the file
+        string[] lines = System.IO.File.ReadAllLines(filePath);
+
+        // Parse each line and create a DrinkRecipe object
+        foreach (string line in lines)
         {
-            string[] lines = file.text.Split('\n');
-            foreach (string line in lines)
+            string[] parts = line.Split(';');
+            if (parts.Length >= 2)
             {
-                if (!string.IsNullOrWhiteSpace(line))
+                string name = parts[0].Trim();
+                string[] ingredientsWithRatios = parts[1].Split(',');
+                List<string> ingredients = new();
+                List<int> ratios = new();
+
+                foreach (string ingredientWithRatio in ingredientsWithRatios)
                 {
-                    string[] parts = line.Split(';');
-                    if (parts.Length == 3)
+                    string[] ingredientParts = ingredientWithRatio.Trim().Split(':');
+                    if (ingredientParts.Length == 2)
                     {
-                        string name = parts[0].Trim();
-                        List<string> ingredients = new List<string>(parts[1].Trim().Split(','));
-                        List<int> ratios = new List<int>();
-                        foreach (string ratio in parts[2].Trim().Split(':'))
-                        {
-                            if (int.TryParse(ratio, out int value))
-                            {
-                                ratios.Add(value);
-                            }
-                        }
-                        orders.Add(new Order(name, ingredients, ratios));
+                        ingredients.Add(ingredientParts[0].Trim());
+                        ratios.Add(int.Parse(ingredientParts[1].Trim()));
                     }
                 }
+
+                recipes.Add(new DrinkRecipe(name, ingredients, ratios));
             }
         }
-        else
+    }
+
+    void DisplayNextOrder()
+    {
+        if (recipes.Count > 0)
         {
-            Debug.LogError("Файл с рецептами не найден: " + fileName);
+            // Get the next recipe
+            DrinkRecipe recipe = recipes[currentRecipeIndex];
+
+            // Update the UI Text with the order details
+            orderText.text = $"Привет, сделай мне {recipe.Name}";
+
+            // Increment the recipe index
+            currentRecipeIndex = (currentRecipeIndex + 1) % recipes.Count;
         }
     }
 
-    public List<string> GetNewOrder()
+    public bool CheckOrder(List<string> ingredients)
     {
-        // Логика выбора нового заказа
-        int randomIndex = Random.Range(0, orders.Count);
-        return orders[randomIndex].ingredients;
+        if (recipes.Count > 0)
+        {
+            DrinkRecipe currentRecipe = recipes[currentRecipeIndex];
+            // Check if the provided ingredients match the current recipe
+            if (currentRecipe.Ingredients.Count != ingredients.Count)
+                return false;
+
+            for (int i = 0; i < ingredients.Count; i++)
+            {
+                if (currentRecipe.Ingredients[i] != ingredients[i])
+                    return false;
+            }
+
+            return true;
+        }
+        return false;
     }
 
-    public string GetOrderText(List<string> ingredients)
+    public void CompleteOrder()
     {
-        // Формирование текста заказа
-        return "Привет, я хочу: " + string.Join(", ", ingredients);
+        coinCount++;
+        UpdateCoinText();
+        DisplayNextOrder();
     }
 
-    public bool IsOrderCorrect(List<string> addedIngredients)
+    void UpdateCoinText()
     {
-        // Проверка правильности выполнения заказа
-        // Логика проверки, сравнение списков addedIngredients и currentOrder
-        return true; // Поменяйте эту строку на вашу логику проверки
-    }
-}
-
-[System.Serializable]
-public class Order
-{
-    public string name;
-    public List<string> ingredients;
-    public List<int> ratios;
-
-    public Order(string name, List<string> ingredients, List<int> ratios)
-    {
-        this.name = name;
-        this.ingredients = ingredients;
-        this.ratios = ratios;
+        coinText.text = "Coins: " + coinCount;
     }
 }
+
