@@ -20,7 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MD/TrainMD.unity
     guid: 1b20c4c1e91577d4698ccb6ced8604df
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bar.unity
     guid: 47a2857499c33d94bbf271e23401e052
+  - enabled: 1
+    path: Assets/Scenes/MD/ProMD.unity
+    guid: 3d43edbbcf8eca24fba946053595170c
+  - enabled: 1
+    path: Assets/Scenes/MD/BeginnerMD.unity
+    guid: c4fb2bcc9db73434cae9fbb3f3d2a4d0
   m_configObjects: {}
