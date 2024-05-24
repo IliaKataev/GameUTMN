@@ -2721,6 +2721,7 @@ GameObject:
   - component: {fileID: 730448197}
   - component: {fileID: 730448199}
   - component: {fileID: 730448198}
+  - component: {fileID: 730448200}
   m_Layer: 5
   m_Name: Shaker
   m_TagString: Untagged
@@ -2785,6 +2786,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730448196}
   m_CullTransparentMesh: 1
+--- !u!114 &730448200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730448196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a99194175002a4dae344cf5c94ae8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 100
+  shakeMagnitude: 20
 --- !u!1 &799410691
 GameObject:
   m_ObjectHideFlags: 0
@@ -3070,7 +3085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &799938964
 RectTransform:
   m_ObjectHideFlags: 0

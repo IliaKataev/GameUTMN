@@ -170,8 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c281de4255d2cc54fb2cc044e50c84e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientName: 
-  shakerManager: {fileID: 2061934536}
 --- !u!1 &12333722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,7 +1186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &317516791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1394,6 +1392,7 @@ GameObject:
   - component: {fileID: 343218723}
   - component: {fileID: 343218725}
   - component: {fileID: 343218724}
+  - component: {fileID: 343218726}
   m_Layer: 5
   m_Name: Shaker
   m_TagString: Untagged
@@ -1458,6 +1457,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343218722}
   m_CullTransparentMesh: 1
+--- !u!114 &343218726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343218722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a99194175002a4dae344cf5c94ae8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 100
+  shakeMagnitude: 20
 --- !u!1 &384863287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2313,9 +2326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6acda4f6266bd4fbbdce319d4a7ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderText: {fileID: 0}
-  recipeFilePath: Assets/drinks/DIF.txt
-  coinText: {fileID: 0}
 --- !u!4 &572110126
 Transform:
   m_ObjectHideFlags: 0
@@ -2676,6 +2686,7 @@ GameObject:
   - component: {fileID: 693356630}
   - component: {fileID: 693356629}
   - component: {fileID: 693356628}
+  - component: {fileID: 693356631}
   m_Layer: 5
   m_Name: "\u041F\u0435\u0440\u0435\u043C\u0435\u0448\u0430\u0442\u044C"
   m_TagString: Untagged
@@ -2746,19 +2757,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 693356629}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2061934536}
-        m_TargetAssemblyTypeName: ShakerManager, Assembly-CSharp
-        m_MethodName: Shake
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &693356629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2797,6 +2796,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693356626}
   m_CullTransparentMesh: 1
+--- !u!114 &693356631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693356626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &734110607
 GameObject:
   m_ObjectHideFlags: 0
@@ -7999,9 +8015,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db861b07a11c9a44580296a0661ed325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakerText: {fileID: 0}
-  maxCapacity: 20
-  orderManager: {fileID: 572110125}
 --- !u!4 &2061934537
 Transform:
   m_ObjectHideFlags: 0
