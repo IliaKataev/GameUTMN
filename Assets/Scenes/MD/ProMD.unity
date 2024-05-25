@@ -789,9 +789,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c69c7cf04275a43b1a27d88520c1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 600
-  timesUpText: {fileID: 1945477003}
-  fadeImage: {fileID: 973516603}
 --- !u!114 &204076326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,8 +929,8 @@ RectTransform:
   - {fileID: 1665185435}
   - {fileID: 973516602}
   - {fileID: 1826674135}
-  - {fileID: 317516791}
   - {fileID: 1863165699}
+  - {fileID: 317516791}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
