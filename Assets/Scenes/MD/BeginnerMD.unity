@@ -3972,8 +3972,8 @@ RectTransform:
   - {fileID: 326431980}
   - {fileID: 1870125753}
   - {fileID: 244533583}
-  - {fileID: 799938964}
   - {fileID: 1087471496}
+  - {fileID: 799938964}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5037,9 +5037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c69c7cf04275a43b1a27d88520c1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 600
-  timesUpText: {fileID: 1932440214}
-  fadeImage: {fileID: 1870125754}
 --- !u!114 &1204409643
 MonoBehaviour:
   m_ObjectHideFlags: 0

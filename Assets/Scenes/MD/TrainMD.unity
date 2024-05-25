@@ -170,8 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c281de4255d2cc54fb2cc044e50c84e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientName: 
-  shakerManager: {fileID: 2061934536}
 --- !u!1 &59195658
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,9 +847,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c69c7cf04275a43b1a27d88520c1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 60
-  timesUpText: {fileID: 1945477003}
-  fadeImage: {fileID: 973516603}
 --- !u!114 &204076326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,8 +988,8 @@ RectTransform:
   - {fileID: 203224936}
   - {fileID: 973516602}
   - {fileID: 1826674135}
-  - {fileID: 1246720695}
   - {fileID: 419138771}
+  - {fileID: 1246720695}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2001,9 +1996,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6acda4f6266bd4fbbdce319d4a7ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderText: {fileID: 0}
-  recipeFilePath: Assets/drinks/DIF.txt
-  coinText: {fileID: 0}
 --- !u!4 &572110126
 Transform:
   m_ObjectHideFlags: 0
@@ -8039,9 +8031,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db861b07a11c9a44580296a0661ed325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakerText: {fileID: 0}
-  maxCapacity: 20
-  orderManager: {fileID: 572110125}
 --- !u!4 &2061934537
 Transform:
   m_ObjectHideFlags: 0
