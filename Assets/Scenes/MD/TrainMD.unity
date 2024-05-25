@@ -122,54 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &10436258
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 10436259}
-  - component: {fileID: 10436260}
-  m_Layer: 5
-  m_Name: IngredientButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &10436259
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10436258}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1665185435}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &10436260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10436258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c281de4255d2cc54fb2cc044e50c84e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &59195658
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +281,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -538,7 +490,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -808,7 +760,6 @@ GameObject:
   - component: {fileID: 204076324}
   - component: {fileID: 204076327}
   - component: {fileID: 204076326}
-  - component: {fileID: 204076325}
   m_Layer: 5
   m_Name: LinearTimer
   m_TagString: Untagged
@@ -835,18 +786,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -72}
   m_SizeDelta: {x: 1000, y: 144.88861}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &204076325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 204076323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8c69c7cf04275a43b1a27d88520c1f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &204076326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1693,7 +1632,7 @@ GameObject:
   - component: {fileID: 461585474}
   - component: {fileID: 461585473}
   m_Layer: 5
-  m_Name: BackgroundList
+  m_Name: Scroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1976,7 +1915,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 572110126}
-  - component: {fileID: 572110125}
   m_Layer: 0
   m_Name: OrderManager
   m_TagString: Untagged
@@ -1984,18 +1922,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &572110125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572110124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de6acda4f6266bd4fbbdce319d4a7ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &572110126
 Transform:
   m_ObjectHideFlags: 0
@@ -2161,7 +2087,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -2294,7 +2220,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -2564,7 +2490,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -3407,7 +3333,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -4417,7 +4343,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -5307,7 +5233,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -5751,7 +5677,6 @@ RectTransform:
   - {fileID: 1783668430}
   - {fileID: 160030618}
   - {fileID: 693356627}
-  - {fileID: 10436259}
   m_Father: {fileID: 206881706}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6317,7 +6242,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -6584,7 +6509,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -6717,7 +6642,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -7075,7 +7000,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -7476,7 +7401,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10436260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IngredientButton, Assembly-CSharp
         m_MethodName: AddIngredientToShaker
         m_Mode: 1
@@ -7876,7 +7801,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2061934536}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShakerManager, Assembly-CSharp
         m_MethodName: ResetShaker
         m_Mode: 1
@@ -8002,50 +7927,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051416480}
   m_CullTransparentMesh: 1
---- !u!1 &2061934535
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2061934537}
-  - component: {fileID: 2061934536}
-  m_Layer: 0
-  m_Name: ShakerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2061934536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061934535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db861b07a11c9a44580296a0661ed325, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &2061934537
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061934535}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 918.3957, y: 515.03723, z: 4.7903347}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2068217709
 GameObject:
   m_ObjectHideFlags: 0
@@ -8457,4 +8338,3 @@ SceneRoots:
   - {fileID: 206881706}
   - {fileID: 850874605}
   - {fileID: 572110126}
-  - {fileID: 2061934537}

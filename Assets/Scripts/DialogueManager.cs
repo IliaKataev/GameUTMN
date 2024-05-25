@@ -22,7 +22,7 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         // Проверяем, был ли произведен клик левой кнопкой мыши
-        if (Input.GetMouseButtonDown(0) && !isTyping)
+        if (Input.GetKeyDown(KeyCode.Space) && !isTyping)
         {
             if (currentDialogueIndex < dialogues.Length - 1)
             {

@@ -26,4 +26,5 @@ public class MainMenuController : MonoBehaviour
         // Выход из игры
         Application.Quit();
     }
+
 }
