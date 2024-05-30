@@ -7248,6 +7248,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c69c7cf04275a43b1a27d88520c1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxTime: 5
+  timesUpText: {fileID: 0}
+  fadeImage: {fileID: 0}
 --- !u!114 &1204409643
 MonoBehaviour:
   m_ObjectHideFlags: 0
