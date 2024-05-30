@@ -11,14 +11,16 @@ public class ShakerManager : MonoBehaviour
     public Button resetButton; // Кнопка для сброса
 
     private DrinkRecipe currentOrder;
-    private Dictionary<string, int> currentIngredients;
+    private Dictionary<string, int> currentIngredients;// Словарь для хранения текущих ингредиентов
     private string currentStickerName;
+
 
     private void Start()
     {
+        currentStickerName = stickerManager.GetCurrentStickerName();
+
         currentIngredients = new Dictionary<string, int>();
         Debug.Log("Текущие ингредиенты инициализированы");
-
         if (resetButton != null)
         {
             resetButton.onClick.AddListener(ResetShaker);
@@ -26,31 +28,67 @@ public class ShakerManager : MonoBehaviour
 
         GenerateNewOrder();
     }
+    //void Start()
+    //{
+    //    // Проверяем, правильно ли инициализирован recipeLoader
+    //    if (recipeLoader == null)
+    //    {
+    //        Debug.LogError("RecipeLoader не правильно инициализирован.");
+    //        return;
+    //    }
+
+    //    currentIngredients = new Dictionary<string, int>(); // Инициализируем currentIngredients
+    //    Debug.Log("Текущие ингредиенты инициализированы");
+    //    if (resetButton != null)
+    //    {
+    //        resetButton.onClick.AddListener(ResetShaker);
+    //    }
+
+    //    // Проверяем, что RecipeLoader был успешно инициализирован и содержит рецепты
+    //    if (recipeLoader.Recipes.Count > 0)
+    //    {
+    //        GenerateNewOrder();
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("RecipeLoader не содержит рецептов.");
+    //    }
+    //}
 
     void GenerateNewOrder()
     {
-        string currentStickerName = stickerManager.GetCurrentStickerName(); // Получаем название текущего стикера
-        currentOrder = RecipeReader.GetRecipeByStickerName(RecipeLoader.recipes,currentStickerName); // Ищем рецепт по названию стикера
+        stickerManager.GetCurrentStickerName();
+        Debug.Log("Генерате нью ордер");
 
-        if (currentOrder != null)
+        if (recipeLoader == null)
         {
-            orderText.text = currentOrder.Name; // Выводим название заказа на экран
+            recipeLoader = FindObjectOfType<RecipeLoader>();
+        }
+
+        // Проверяем, что RecipeLoader был успешно инициализирован и содержит рецепты
+        if (recipeLoader != null && recipeLoader.Recipes.Count > 0)
+        {
+            currentStickerName = stickerManager.GetCurrentStickerName();
+            orderText.text = currentStickerName;
+
             Debug.Log("Найден рецепт: " + currentOrder.Name);
 
-            // Выводим ингредиенты текущего заказа в дебаг лог
+            // Выводим ингредиенты текущего заказа в консоль для отладки
             Debug.Log("Ингредиенты текущего заказа:");
             foreach (var ingredient in currentOrder.Ingredients)
             {
-                Debug.Log($"{ingredient.Key}: {ingredient.Value}");
+                Debug.Log(ingredient.Key + ": " + ingredient.Value);
             }
 
-            stickerManager.SetCanChangeSticker(false); // Запрещаем смену стикера
+            
+            stickerManager.SetCanChangeSticker(false);
         }
         else
         {
-            Debug.LogError("Рецепт для стикера " + currentStickerName + " не найден.");
+            Debug.LogError("Нет доступных рецептов или recipeLoader равен null.");
         }
     }
+
 
     public void AddIngredient(string ingredient)
     {
@@ -62,7 +100,6 @@ public class ShakerManager : MonoBehaviour
         {
             currentIngredients[ingredient] = 1;
         }
-
         Debug.Log("Ингредиент добавлен: " + ingredient);
         DisplayCurrentIngredients();
     }
@@ -73,14 +110,15 @@ public class ShakerManager : MonoBehaviour
         if (isMatch)
         {
             resultText.text = "Заказ выполнен!";
-            stickerManager.SetCanChangeSticker(true);
+            stickerManager.SetCanChangeSticker(true); // Разрешаем смену стикера при успешном выполнении заказа
             GenerateNewOrder();
-            ResetShaker();
-            stickerManager.ChangeSticker();
+            ResetShaker(); // Сбрасываем шейкер при успешном выполнении заказа
+            stickerManager.ChangeSticker(); // Меняем стикер при успешном выполнении заказа
         }
         else
         {
             resultText.text = "Неверный заказ!";
+            // Добавьте анимацию встряхивания здесь, если необходимо
         }
     }
 
@@ -88,12 +126,14 @@ public class ShakerManager : MonoBehaviour
     {
         if (currentOrder != null && currentIngredients != null)
         {
+            Dictionary<string, int> dp = new Dictionary<string, int>();
             foreach (var ingredient in currentOrder.Ingredients)
             {
                 if (!currentIngredients.ContainsKey(ingredient.Key) || currentIngredients[ingredient.Key] != ingredient.Value)
                 {
                     return false;
                 }
+                dp[ingredient.Key] = currentIngredients[ingredient.Key];
             }
             return true;
         }
@@ -110,6 +150,7 @@ public class ShakerManager : MonoBehaviour
         Debug.Log("Шейкер сброшен.");
         DisplayCurrentIngredients();
     }
+     
 
     void DisplayCurrentIngredients()
     {
@@ -122,7 +163,7 @@ public class ShakerManager : MonoBehaviour
             Debug.Log("Текущие ингредиенты в шейкере:");
             foreach (var ingredient in currentIngredients)
             {
-                Debug.Log($"{ingredient.Key}: {ingredient.Value}");
+                Debug.Log(ingredient.Key + ": " + ingredient.Value);
             }
         }
     }
