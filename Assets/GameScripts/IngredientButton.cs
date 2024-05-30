@@ -4,14 +4,14 @@ using UnityEngine.UI;
 public class IngredientButton : MonoBehaviour
 {
     public ShakerManager shakerManager;
-    public string ingredientName;
+    public Button button;
 
     void Start()
     {
-        GetComponent<Button>().onClick.AddListener(AddIngredient);
+        button.onClick.AddListener(() => AddIngredient(button.name));
     }
 
-    void AddIngredient()
+    void AddIngredient(string ingredientName)
     {
         shakerManager.AddIngredient(ingredientName);
     }

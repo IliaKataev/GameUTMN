@@ -7243,11 +7243,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204409640}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8c69c7cf04275a43b1a27d88520c1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxTime: 5
+  timesUpText: {fileID: 0}
+  fadeImage: {fileID: 0}
 --- !u!114 &1204409643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10128,14 +10131,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1801989520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83f213695dbc7584c9b677e5e1d33c95, type: 3}
+  m_Script: {fileID: 11500000, guid: 97f4d12934aa2a343b7f6a4ffd8d1f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipeLoader: {fileID: 692772184}
-  stickerManager: {fileID: 1856788524}
-  orderText: {fileID: 0}
-  resultText: {fileID: 0}
-  resetButton: {fileID: 247785174}
+  craftRecipe: {fileID: 0}
 --- !u!1 &1832659259
 GameObject:
   m_ObjectHideFlags: 0
