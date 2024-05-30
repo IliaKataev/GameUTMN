@@ -5,7 +5,11 @@ using UnityEngine.UI;
 public class ShakerManager : MonoBehaviour
 {
     public CraftRecipe craftRecipe; //ссылка на компонент
+    public StickerManager stickerManager; //ссылка на компонент
+
     private List<Ingredient> shaker = new List<Ingredient>();
+    private string currentStickerName = StickerManager.currentStickerName;
+    private int coins;
 
     public void Start()
     {
@@ -26,24 +30,80 @@ public class ShakerManager : MonoBehaviour
                 }
             }
         }
-        DisplayCurrentIngredients();
     }
 
-    void DisplayCurrentIngredients()
+    public void Serve()
     {
-        if (shaker.Count == 0)
+        if (CheckIngredients())
         {
-            Debug.Log("Ничего нет.");
+            Debug.Log("Все круто!");
+            //добавить очки
+            Reset();
         }
         else
         {
-            Debug.Log("Текущие ингредиенты в шейкере:");
-            foreach (var ingredient in shaker)
+            Debug.Log("Все не круто!");
+            Reset();
+        }
+        stickerManager.SetRandomSticker();
+        stickerManager.DisplayRecipe();
+    }
+
+    bool CheckIngredients()
+    {
+        foreach (var recipe in craftRecipe.recipes)
+        {
+            if (currentStickerName == recipe.NameRecipe)
             {
-                Debug.Log(ingredient + ": " + ingredient);
+                if (recipe.Ingredients.Count != shaker.Count) // Добавлена проверка количества ингредиентов
+                {
+                    return false;
+                }
+
+                foreach (var ingredientTrue in recipe.Ingredients)
+                {
+                    bool ingredientFound = false;
+
+                    foreach (var ingredientShaker in shaker)
+                    {
+                        if (ingredientShaker.NameIngredient == ingredientTrue.NameIngredient && 
+                            ingredientShaker.CountIngredient == ingredientTrue.CountIngredient) 
+                        {
+                            ingredientFound = true;
+                            break;
+                        }
+                    }
+
+                    if (!ingredientFound)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
             }
         }
+
+        return false;
     }
+
+
+    /*
+        void DisplayCurrentIngredients()
+        {
+            if (shaker.Count == 0)
+            {
+                Debug.Log("Ничего нет.");
+            }
+            else
+            {
+                Debug.Log("Текущие ингредиенты в шейкере:");
+                foreach (var ingredient in shaker)
+                {
+                    Debug.Log(ingredient.NameIngredient + ": " + ingredient.CountIngredient);
+                }
+            }
+        }*/
 
     public void Reset()
     {

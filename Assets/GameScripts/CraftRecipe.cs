@@ -24,9 +24,17 @@ public struct DrinkReady
     public Sprite StickerImage;
 }
 
+[Serializable]
+public struct Sticker
+{
+    public string NameOrder;
+    public Sprite OrderSticker;
+}
+
 [CreateAssetMenu]
 public class CraftRecipe : ScriptableObject
 {
     public List<DrinkRecipe> recipes;
     public List<DrinkReady> resultsDrink;
+    public List<Sticker> stickers;
 }

@@ -338,3 +338,71 @@ MonoBehaviour:
     StickerImage: {fileID: 1050233281, guid: b5a2964ac4104624b9026dfc4abd5481, type: 3}
   - NameRecipe: "\u0421\u043E\u043B\u043D\u0435\u0447\u043D\u044B\u0439 \u0434\u0435\u043D\u044C"
     StickerImage: {fileID: 1908712226, guid: a6a716cb69c9bd14b84f9be98388d1b3, type: 3}
+  stickers:
+  - NameOrder: "\u041B\u0435\u0442\u043D\u0438\u0439 \u0431\u0440\u0438\u0437"
+    OrderSticker: {fileID: 1456133801, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u0410\u043F\u0435\u043B\u044C\u0441\u0438\u043D\u043E\u0432\u0430\u044F
+      \u0441\u0432\u0435\u0436\u0435\u0441\u0442\u044C"
+    OrderSticker: {fileID: -1532670203, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u041A\u043E\u043A\u043E\u0441\u043E\u0432\u044B\u0439 \u0437\u0430\u043A\u0430\u0442"
+    OrderSticker: {fileID: -1205739110, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u0410\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u0441\u043A\u0430\u044F
+      \u043A\u043B\u0430\u0441\u0441\u0438\u043A\u0430"
+    OrderSticker: {fileID: 1276102121, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u0422\u0440\u043E\u043F\u0438\u0447\u0435\u0441\u043A\u0438\u0439
+      \u0440\u0430\u0439"
+    OrderSticker: {fileID: -668743903, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u0413\u043E\u0440\u044F\u0447\u0438\u0439 \u0432\u0435\u0447\u0435\u0440"
+    OrderSticker: {fileID: -517018620, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u041E\u0441\u0432\u0435\u0436\u0430\u044E\u0449\u0438\u0439 \u0434\u0435\u043D\u044C"
+    OrderSticker: {fileID: -1165180594, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u0417\u043E\u043B\u043E\u0442\u043E\u0439 \u0437\u0430\u043A\u0430\u0442"
+    OrderSticker: {fileID: -1743054465, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u041A\u0430\u0440\u0438\u0431\u0441\u043A\u0430\u044F \u043D\u043E\u0447\u044C"
+    OrderSticker: {fileID: -500131093, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u042F\u0440\u043A\u0438\u0439 \u0432\u0441\u043F\u043B\u0435\u0441\u043A"
+    OrderSticker: {fileID: 697430886, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u0422\u0438\u0445\u0438\u0439 \u043E\u043C\u0443\u0442"
+    OrderSticker: {fileID: -1593448079, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u0426\u0438\u0442\u0440\u0443\u0441\u043E\u0432\u044B\u0439 \u0432\u0437\u0440\u044B\u0432"
+    OrderSticker: {fileID: 1202620977, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u0421\u0435\u0432\u0435\u0440\u043D\u043E\u0435 \u0441\u0438\u044F\u043D\u0438\u0435"
+    OrderSticker: {fileID: 475761089, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u042D\u043A\u0437\u043E\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0439
+      \u043A\u043E\u043A\u0442\u0435\u0439\u043B\u044C"
+    OrderSticker: {fileID: 1402402309, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u0422\u0443\u043C\u0430\u043D\u043D\u044B\u0439 \u0432\u0435\u0447\u0435\u0440"
+    OrderSticker: {fileID: 789703298, guid: 3f179f2634989b74db79b191c91d0b94, type: 3}
+  - NameOrder: "\u041B\u0435\u0433\u043A\u0438\u0439 \u0431\u0440\u0438\u0437"
+    OrderSticker: {fileID: -637056420, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u041A\u0443\u0431\u0438\u043D\u0441\u043A\u0438\u0439 \u0440\u043E\u043C"
+    OrderSticker: {fileID: 1947706480, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u0424\u0440\u0443\u043A\u0442\u043E\u0432\u044B\u0439 \u043C\u0438\u043A\u0441"
+    OrderSticker: {fileID: -1814553609, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u0422\u0440\u043E\u043F\u0438\u0447\u0435\u0441\u043A\u0438\u0439
+      \u043A\u043E\u043A\u0442\u0435\u0439\u043B\u044C"
+    OrderSticker: {fileID: -591404345, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u0421\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0432\u0435\u0442\u0435\u0440"
+    OrderSticker: {fileID: 984848387, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u0417\u0438\u043C\u043D\u044F\u044F \u0441\u043A\u0430\u0437\u043A\u0430"
+    OrderSticker: {fileID: -1823475941, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u041B\u0435\u0442\u043D\u0438\u0439 \u043E\u0442\u0434\u044B\u0445"
+    OrderSticker: {fileID: 1616037353, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u0447\u043D\u044B\u0439
+      \u043C\u0438\u043A\u0441"
+    OrderSticker: {fileID: -1701078185, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u041C\u043E\u0440\u0441\u043A\u043E\u0439 \u0431\u0440\u0438\u0437"
+    OrderSticker: {fileID: 232360310, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u042D\u043D\u0435\u0440\u0433\u0435\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0439
+      \u0432\u0437\u0440\u044B\u0432"
+    OrderSticker: {fileID: -1817256081, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u0424\u0440\u0443\u043A\u0442\u043E\u0432\u044B\u0439 \u0434\u0435\u0441\u0435\u0440\u0442"
+    OrderSticker: {fileID: -2064373819, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u0413\u043E\u0440\u044F\u0447\u0438\u0439 \u0442\u0440\u043E\u043F\u0438\u043A"
+    OrderSticker: {fileID: -1009106578, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u0417\u0432\u0435\u0437\u0434\u043D\u0430\u044F \u043D\u043E\u0447\u044C"
+    OrderSticker: {fileID: -1511822789, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u041C\u043E\u0440\u043E\u0437\u043D\u043E\u0435 \u0443\u0442\u0440\u043E"
+    OrderSticker: {fileID: 13646758, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
+  - NameOrder: "\u0421\u043E\u043B\u043D\u0435\u0447\u043D\u044B\u0439 \u0434\u0435\u043D\u044C"
+    OrderSticker: {fileID: -1246193296, guid: 7cafc278a153e3548bf95bb6e929d785, type: 3}
