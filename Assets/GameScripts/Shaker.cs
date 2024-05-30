@@ -11,73 +11,26 @@ public class ShakerManager : MonoBehaviour
     public Button resetButton; // Кнопка для сброса
 
     private DrinkRecipe currentOrder;
-    private Dictionary<string, int> currentIngredients = new Dictionary<string, int>(); // Словарь для хранения текущих ингредиентов
+    private Dictionary<string, int> currentIngredients;
     private string currentStickerName;
 
-    void Start()
+    private void Start()
     {
-        currentStickerName = stickerManager.GetCurrentStickerName();
-
-        Debug.Log($"Using item: {currentStickerName}");
-
-        // Проверяем, правильно ли инициализирован recipeLoader
-        if (recipeLoader == null)
-        {
-            Debug.LogError("RecipeLoader не правильно инициализирован.");
-            return;
-        }
-
-        currentIngredients = new Dictionary<string, int>(); // Инициализируем currentIngredients
+        currentIngredients = new Dictionary<string, int>();
         Debug.Log("Текущие ингредиенты инициализированы");
+
         if (resetButton != null)
         {
             resetButton.onClick.AddListener(ResetShaker);
         }
 
-        // Проверяем, что RecipeLoader был успешно инициализирован и содержит рецепты
-        if (recipeLoader.Recipes.Count > 0)
-        {
-            GenerateNewOrder();
-        }
-        else
-        {
-            Debug.LogError("RecipeLoader не содержит рецептов.");
-        }
+        GenerateNewOrder();
     }
 
     void GenerateNewOrder()
     {
-
-        if (recipeLoader == null)
-        {
-            recipeLoader = FindObjectOfType<RecipeLoader>();
-        }
-
-        // Проверяем, что RecipeLoader был успешно инициализирован и содержит рецепты
-        if (recipeLoader != null && recipeLoader.Recipes.Count > 0)
-        {
-            int randomIndex = Random.Range(0, recipeLoader.Recipes.Count);
-            currentOrder = recipeLoader.Recipes[randomIndex];
-            orderText.text = currentOrder.Name;
-
-            Debug.Log("Найден рецепт: " + currentOrder.Name);
-
-            // Выводим ингредиенты текущего заказа в консоль для отладки
-            Debug.Log("Ингредиенты текущего заказа:");
-            foreach (var ingredient in currentOrder.Ingredients)
-            {
-                Debug.Log(ingredient.Key + ": " + ingredient.Value);
-            }
-
-            currentStickerName = stickerManager.GetCurrentStickerName();
-            stickerManager.SetCanChangeSticker(false);
-        }
-        else
-        {
-            Debug.LogError("Нет доступных рецептов или recipeLoader равен null.");
-        }
+        //1. Получение названия стикера
     }
-
 
     public void AddIngredient(string ingredient)
     {
@@ -89,6 +42,7 @@ public class ShakerManager : MonoBehaviour
         {
             currentIngredients[ingredient] = 1;
         }
+
         Debug.Log("Ингредиент добавлен: " + ingredient);
         DisplayCurrentIngredients();
     }
@@ -99,15 +53,14 @@ public class ShakerManager : MonoBehaviour
         if (isMatch)
         {
             resultText.text = "Заказ выполнен!";
-            stickerManager.SetCanChangeSticker(true); // Разрешаем смену стикера при успешном выполнении заказа
+            stickerManager.SetCanChangeSticker(true);
             GenerateNewOrder();
-            ResetShaker(); // Сбрасываем шейкер при успешном выполнении заказа
-            stickerManager.ChangeSticker(); // Меняем стикер при успешном выполнении заказа
+            ResetShaker();
+            stickerManager.ChangeSticker();
         }
         else
         {
             resultText.text = "Неверный заказ!";
-            // Добавьте анимацию встряхивания здесь, если необходимо
         }
     }
 
@@ -115,14 +68,12 @@ public class ShakerManager : MonoBehaviour
     {
         if (currentOrder != null && currentIngredients != null)
         {
-            Dictionary<string, int> dp = new Dictionary<string, int>();
             foreach (var ingredient in currentOrder.Ingredients)
             {
                 if (!currentIngredients.ContainsKey(ingredient.Key) || currentIngredients[ingredient.Key] != ingredient.Value)
                 {
                     return false;
                 }
-                dp[ingredient.Key] = currentIngredients[ingredient.Key];
             }
             return true;
         }
@@ -140,7 +91,6 @@ public class ShakerManager : MonoBehaviour
         DisplayCurrentIngredients();
     }
 
-
     void DisplayCurrentIngredients()
     {
         if (currentIngredients.Count == 0)
@@ -152,7 +102,7 @@ public class ShakerManager : MonoBehaviour
             Debug.Log("Текущие ингредиенты в шейкере:");
             foreach (var ingredient in currentIngredients)
             {
-                Debug.Log(ingredient.Key + ": " + ingredient.Value);
+                Debug.Log($"{ingredient.Key}: {ingredient.Value}");
             }
         }
     }
