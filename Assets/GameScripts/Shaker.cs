@@ -16,6 +16,10 @@ public class ShakerManager : MonoBehaviour
 
     void Start()
     {
+        currentStickerName = stickerManager.GetCurrentStickerName();
+
+        Debug.Log($"Using item: {currentStickerName}");
+
         // Проверяем, правильно ли инициализирован recipeLoader
         if (recipeLoader == null)
         {
@@ -24,7 +28,7 @@ public class ShakerManager : MonoBehaviour
         }
 
         currentIngredients = new Dictionary<string, int>(); // Инициализируем currentIngredients
-
+        Debug.Log("Текущие ингредиенты инициализированы");
         if (resetButton != null)
         {
             resetButton.onClick.AddListener(ResetShaker);
@@ -43,6 +47,7 @@ public class ShakerManager : MonoBehaviour
 
     void GenerateNewOrder()
     {
+
         if (recipeLoader == null)
         {
             recipeLoader = FindObjectOfType<RecipeLoader>();
@@ -73,6 +78,7 @@ public class ShakerManager : MonoBehaviour
         }
     }
 
+
     public void AddIngredient(string ingredient)
     {
         if (currentIngredients.ContainsKey(ingredient))
@@ -84,6 +90,7 @@ public class ShakerManager : MonoBehaviour
             currentIngredients[ingredient] = 1;
         }
         Debug.Log("Ингредиент добавлен: " + ingredient);
+        DisplayCurrentIngredients();
     }
 
     public void Serve()
@@ -130,5 +137,23 @@ public class ShakerManager : MonoBehaviour
     {
         currentIngredients.Clear();
         Debug.Log("Шейкер сброшен.");
+        DisplayCurrentIngredients();
+    }
+
+
+    void DisplayCurrentIngredients()
+    {
+        if (currentIngredients.Count == 0)
+        {
+            Debug.Log("Ничего нет.");
+        }
+        else
+        {
+            Debug.Log("Текущие ингредиенты в шейкере:");
+            foreach (var ingredient in currentIngredients)
+            {
+                Debug.Log(ingredient.Key + ": " + ingredient.Value);
+            }
+        }
     }
 }

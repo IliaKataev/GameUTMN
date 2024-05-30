@@ -60,6 +60,7 @@ public class StickerManager : MonoBehaviour
     
     public string GetCurrentStickerName()
     {
+        Debug.Log($"Using item: {currentSticker.name}");
         return currentSticker.name; // ¬озвращаем название текущего стикера
     }
 
