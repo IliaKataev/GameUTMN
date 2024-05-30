@@ -29,7 +29,27 @@ public class ShakerManager : MonoBehaviour
 
     void GenerateNewOrder()
     {
-        //1. Получение названия стикера
+        string currentStickerName = stickerManager.GetCurrentStickerName(); // Получаем название текущего стикера
+        currentOrder = RecipeReader.GetRecipeByStickerName(RecipeLoader.recipes,currentStickerName); // Ищем рецепт по названию стикера
+
+        if (currentOrder != null)
+        {
+            orderText.text = currentOrder.Name; // Выводим название заказа на экран
+            Debug.Log("Найден рецепт: " + currentOrder.Name);
+
+            // Выводим ингредиенты текущего заказа в дебаг лог
+            Debug.Log("Ингредиенты текущего заказа:");
+            foreach (var ingredient in currentOrder.Ingredients)
+            {
+                Debug.Log($"{ingredient.Key}: {ingredient.Value}");
+            }
+
+            stickerManager.SetCanChangeSticker(false); // Запрещаем смену стикера
+        }
+        else
+        {
+            Debug.LogError("Рецепт для стикера " + currentStickerName + " не найден.");
+        }
     }
 
     public void AddIngredient(string ingredient)

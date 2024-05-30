@@ -68,5 +68,20 @@ public class RecipeReader
 
         return recipes;
     }
+    public static DrinkRecipe GetRecipeByStickerName(List<DrinkRecipe> recipes, string stickerName)
+    {
+        // Предположим, что название стикера соответствует названию рецепта
+        foreach (var recipe in recipes)
+        {
+            if (recipe.Name == stickerName)
+            {
+                return recipe;
+            }
+        }
+        // Вернуть null, если рецепт не найден
+        return null;
+    }
+
+
 }
 

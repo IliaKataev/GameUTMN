@@ -4,13 +4,12 @@ using UnityEngine.UI;
 
 public class StickerManager : MonoBehaviour
 {
-    public Image stickerImage; // Image component to display the sticker
-    public Sprite[] stickerSprites1; // Array to hold the first set of stickers
-    public Sprite[] stickerSprites2; // Array to hold the second set of stickers
+    public Image stickerImage; // Компонент Image для отображения стикера
+    public Sprite[] stickerSprites1; // Массив для хранения первого набора стикеров
+    public Sprite[] stickerSprites2; // Массив для хранения второго набора стикеров
 
-    private List<Sprite> allStickers;
-    private Sprite currentSticker;
-    private bool canChangeSticker = false; // Флаг для контроля смены стикера
+    private List<Sprite> allStickers; // Список для хранения всех стикеров
+    private bool canChangeSticker = true; // Флаг для контроля смены стикера
 
     void Start()
     {
@@ -29,7 +28,7 @@ public class StickerManager : MonoBehaviour
     void SetRandomSticker()
     {
         int randomIndex = Random.Range(0, allStickers.Count);
-        currentSticker = allStickers[randomIndex];
+        Sprite currentSticker = allStickers[randomIndex];
         stickerImage.sprite = currentSticker;
     }
 
@@ -38,7 +37,7 @@ public class StickerManager : MonoBehaviour
         if (canChangeSticker)
         {
             SetRandomSticker();
-            Debug.Log("Стикер изменен");
+            Debug.Log("Стандартный стикер изменен");
         }
         else
         {
@@ -57,11 +56,18 @@ public class StickerManager : MonoBehaviour
             Debug.Log("Сначала завершите текущий заказ!");
         }
     }
-    
+
     public string GetCurrentStickerName()
     {
-        Debug.Log($"Using item: {currentSticker.name}");
-        return currentSticker.name; // Возвращаем название текущего стикера
+        if (stickerImage != null && stickerImage.sprite != null)
+        {
+            Debug.Log($"{stickerImage.sprite.name.Split('.')[0]}");// Возвращаем название файла спрайта (без расширения) текущего стикера
+            return stickerImage.sprite.name.Split('.')[0];
+        }
+        else
+        {
+            return null; // Если нет спрайта, возвращаем null или другое значение по умолчанию
+        }
     }
 
     public void SetCanChangeSticker(bool value)
