@@ -44,4 +44,10 @@ public class ShakerManager : MonoBehaviour
             }
         }
     }
+
+    public void Reset()
+    {
+        shaker.Clear();
+        Debug.Log("Пуст шейкер");
+    }
 }
