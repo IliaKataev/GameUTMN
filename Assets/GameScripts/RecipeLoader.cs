@@ -11,16 +11,6 @@ public class RecipeLoader : MonoBehaviour
     {
         LoadRecipes("Assets/Drinks/DIF.txt");
         Debug.Log("Рецепты загружены:");
-        //foreach (var recipe in Recipes)
-        //{
-        //    Debug.Log("Название: " + recipe.Name);
-        //    Debug.Log("Ингредиенты:");
-        //    foreach (var ingredient in recipe.Ingredients)
-        //    {
-        //        Debug.Log(ingredient.Key + ": " + ingredient.Value);
-        //    }
-        //    Debug.Log("------------");
-        //}
     }
 
     public void LoadRecipes(string path)
@@ -40,14 +30,20 @@ public class RecipeLoader : MonoBehaviour
                 foreach (var ingredient in ingredientsPart)
                 {
                     string ingredientData = ingredient.Trim();
-                    string[] ingredientInfo = ingredientData.Split(' ');
-                    string ingredientName = string.Join(" ", ingredientInfo, 0, ingredientInfo.Length - 1);
-                    int quantity = int.Parse(ingredientInfo[ingredientInfo.Length - 1].Trim('(', ')'));
+                    int startQuote = ingredientData.IndexOf('\"') + 1;
+                    int endQuote = ingredientData.LastIndexOf('\"');
+                    string ingredientName = ingredientData.Substring(startQuote, endQuote - startQuote);
+
+                    int startBracket = ingredientData.IndexOf('(') + 1;
+                    int endBracket = ingredientData.IndexOf(')');
+                    int quantity = int.Parse(ingredientData.Substring(startBracket, endBracket - startBracket));
+
                     ingredients[ingredientName] = quantity;
                 }
 
                 DrinkRecipe recipe = new DrinkRecipe(name, ingredients);
                 Recipes.Add(recipe);
+
                 // Вывод информации о рецепте в консоль
                 Debug.Log("Название рецепта: " + recipe.Name);
                 Debug.Log("Ингредиенты:");
@@ -59,5 +55,4 @@ public class RecipeLoader : MonoBehaviour
             }
         }
     }
-
 }
