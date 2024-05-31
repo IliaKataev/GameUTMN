@@ -26,11 +26,11 @@ public class ShakerManager : MonoBehaviour
 
         if (serveButton != null)
         {
-            serveButton.onClick.AddListener(ChangeDrinkImage);
+            serveButton.onClick.AddListener(Serve);
         }
     }
 
-    public void ChangeDrinkImage() //это для проверки напитка и добавление очков - кнопнка подать
+    void Serve() //это для проверки напитка и добавление очков - кнопнка подать
     {
         if (shaker.Count > 0 && ShakeImageOnButtonPress.isShakeButtonPressed) // Условие проверяет, что в шейкере есть ингредиенты и только при такой ситуации мы можем подать
         {
@@ -61,7 +61,7 @@ public class ShakerManager : MonoBehaviour
         }
     }
 
-    public void Serve() // это для смены стикера - кнопка новый заказ
+    public void ChangeDrinkImage() // это для смены стикера - кнопка новый заказ
     {
         if (drinkImage != null && originalDrinkImageSprite != null)
         {
