@@ -32,7 +32,7 @@ public class ShakerManager : MonoBehaviour
 
     public void ChangeDrinkImage() //это для проверки напитка и добавление очков - кнопнка подать
     {
-        if (shaker.Count > 0) // Условие проверяет, что в шейкере есть ингредиенты и только при такой ситуации мы можем подать
+        if (shaker.Count > 0 && ShakeImageOnButtonPress.isShakeButtonPressed) // Условие проверяет, что в шейкере есть ингредиенты и только при такой ситуации мы можем подать
         {
             countMakeOrder++;
             CheckIngredients();
@@ -41,6 +41,7 @@ public class ShakerManager : MonoBehaviour
             SetDrinkImage();
             UpdateCoinsText();
             Reset();
+            ShakeImageOnButtonPress.isShakeButtonPressed = false;
         }
     }
 
@@ -53,7 +54,7 @@ public class ShakerManager : MonoBehaviour
                 if (ingredient.NameIngredient == ingredientName)
                 {
                     shaker.Add(ingredient);
-                    Debug.Log("Added " + ingredientName + " to the shaker.");
+                    Debug.Log("Добавлен " + ingredientName + " в шейкер");
                     return;
                 }
             }

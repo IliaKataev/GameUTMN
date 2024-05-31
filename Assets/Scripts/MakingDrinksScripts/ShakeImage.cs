@@ -8,6 +8,9 @@ public class ShakeImageOnButtonPress : MonoBehaviour, IPointerDownHandler, IPoin
     public float shakeMagnitude = 0.1f; // Сила тряски
     public GameObject targetImage; // Объект картинки, который будет трястись
 
+    [SerializeField]
+    public static bool isShakeButtonPressed = false;
+
     private Vector3 originalPosition; // Начальная позиция картинки
     private bool isShaking = false; // Флаг, указывающий, трясется ли картинка
 
@@ -23,6 +26,7 @@ public class ShakeImageOnButtonPress : MonoBehaviour, IPointerDownHandler, IPoin
         {
             // Запускаем тряску картинки
             StartCoroutine(Shake());
+            isShakeButtonPressed = true;
         }
     }
 

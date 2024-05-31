@@ -11,7 +11,7 @@ public class StickerManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("StickerManager инициализирован в Awake");
+        //Debug.Log("StickerManager инициализирован в Awake");
         SetRandomSticker();
         DisplayRecipe();
         
@@ -26,7 +26,7 @@ public class StickerManager : MonoBehaviour
         // Инициализация currentSticker новым значением
         currentSticker = new CurrentSticker(stickerName, stickerSprite);
 
-        Debug.Log(currentSticker.CurrentStickerName + "В СТИКЕР МАНАГЕРЕ");
+        //Debug.Log(currentSticker.CurrentStickerName + "В СТИКЕР МАНАГЕРЕ");
         stickerImage.sprite = currentSticker.CurrentStickerSprite;
     }
 
