@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShakerManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ShakerManager : MonoBehaviour
     private List<Ingredient> shaker = new List<Ingredient>();
     private static int coins;
     private string currentStickerName;
+
+    public TMP_Text coinsText;
     public Button serveButton;
     public Image drinkImage;
     public Sprite originalDrinkImageSprite;
@@ -62,6 +65,7 @@ public class ShakerManager : MonoBehaviour
         stickerManager.SetRandomSticker();
         GetStickerName();
         stickerManager.DisplayRecipe();
+        UpdateCoinsText();
 
     }
 
@@ -123,5 +127,13 @@ public class ShakerManager : MonoBehaviour
     {
         shaker.Clear();
         Debug.Log("Пуст шейкер");
+    }
+
+    void UpdateCoinsText()
+    {
+        if (coinsText != null)
+        {
+            coinsText.text = "Монеты: " + coins;
+        }
     }
 }
