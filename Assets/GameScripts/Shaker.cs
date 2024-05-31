@@ -2,18 +2,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-using System.Collections;
 
 public class ShakerManager : MonoBehaviour
 {
     public CraftRecipe craftRecipe; //ссылка на компонент
     public StickerManager stickerManager; //ссылка на компонент
+
     private List<Ingredient> shaker = new List<Ingredient>();
     private static int coins;
     private string currentStickerName;
-    public Button serveButton; 
+    public Button serveButton;
     public Image drinkImage;
-    private Sprite originalDrink;
+    public Sprite originalDrinkImageSprite;
 
     void Start()
     {
@@ -22,13 +22,16 @@ public class ShakerManager : MonoBehaviour
 
         if (serveButton != null)
         {
-            serveButton.onClick.AddListener(Serve);
+            serveButton.onClick.AddListener(ChangeDrinkImage);
         }
 
-        if (drinkImage != null)
-        {
-            originalDrink = drinkImage.sprite;
-        }
+
+    }
+
+    void ChangeDrinkImage()
+    {
+
+        SetDrinkImage();
     }
 
     public void AddIngredient(string ingredientName)
@@ -49,6 +52,10 @@ public class ShakerManager : MonoBehaviour
 
     public void Serve()
     {
+        if (drinkImage != null && originalDrinkImageSprite != null)
+        {
+            drinkImage.sprite = originalDrinkImageSprite;
+        }
         CheckIngredients();
         Debug.Log(coins);
         Reset();
@@ -56,8 +63,6 @@ public class ShakerManager : MonoBehaviour
         GetStickerName();
         stickerManager.DisplayRecipe();
 
-        SetDrinkImage();
-        StartCoroutine(RestoreOriginalDrink(1f));
     }
 
     void SetDrinkImage()
@@ -67,25 +72,13 @@ public class ShakerManager : MonoBehaviour
         {
             if (currentStickerName == recipe.NameRecipe)
             {
-                
+
                 if (drinkImage != null)
                 {
                     drinkImage.sprite = recipe.StickerImage;
                 }
                 break;
             }
-        }
-    }
-
-    IEnumerator RestoreOriginalDrink(float delay)
-    {
-        
-        yield return new WaitForSeconds(delay);
-
-        
-        if (drinkImage != null && originalDrink != null)
-        {
-            drinkImage.sprite = originalDrink;
         }
     }
 
@@ -98,7 +91,7 @@ public class ShakerManager : MonoBehaviour
             {
                 int maxCoins = 0;
                 int totalMaxCoins = 0;
-                int count = 0 ;
+                int count = 0;
                 foreach (var ingredientTrue in recipe.Ingredients)
                 {
                     maxCoins = ingredientTrue.CountIngredient;
@@ -132,5 +125,3 @@ public class ShakerManager : MonoBehaviour
         Debug.Log("Пуст шейкер");
     }
 }
-
-
