@@ -1,20 +1,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+using System.Collections;
 
 public class ShakerManager : MonoBehaviour
 {
     public CraftRecipe craftRecipe; //ссылка на компонент
     public StickerManager stickerManager; //ссылка на компонент
-
     private List<Ingredient> shaker = new List<Ingredient>();
     private static int coins;
     private string currentStickerName;
+    public Button serveButton; 
+    public Image drinkImage;
+    private Sprite originalDrink;
 
     void Start()
     {
         Debug.Log("ShakerManager стартовал");
         GetStickerName();
+
+        if (serveButton != null)
+        {
+            serveButton.onClick.AddListener(Serve);
+        }
+
+        if (drinkImage != null)
+        {
+            originalDrink = drinkImage.sprite;
+        }
     }
 
     public void AddIngredient(string ingredientName)
@@ -41,6 +55,38 @@ public class ShakerManager : MonoBehaviour
         stickerManager.SetRandomSticker();
         GetStickerName();
         stickerManager.DisplayRecipe();
+
+        SetDrinkImage();
+        StartCoroutine(RestoreOriginalDrink(1f));
+    }
+
+    void SetDrinkImage()
+    {
+
+        foreach (var recipe in craftRecipe.resultsDrink)
+        {
+            if (currentStickerName == recipe.NameRecipe)
+            {
+                
+                if (drinkImage != null)
+                {
+                    drinkImage.sprite = recipe.StickerImage;
+                }
+                break;
+            }
+        }
+    }
+
+    IEnumerator RestoreOriginalDrink(float delay)
+    {
+        
+        yield return new WaitForSeconds(delay);
+
+        
+        if (drinkImage != null && originalDrink != null)
+        {
+            drinkImage.sprite = originalDrink;
+        }
     }
 
     void CheckIngredients()
