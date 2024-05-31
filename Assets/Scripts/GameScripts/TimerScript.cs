@@ -11,12 +11,13 @@ public class TimerScript : MonoBehaviour
     public float maxTime = 5f; // Set this to 600 for 10 minutes
     float timeLeft;
     public GameObject timesUpText;
-    public Image fadeImage; // UI Image object to handle the fade effect
+    //public Image fadeImage; // UI Image object to handle the fade effect
     public Button startButton; // —сылка на кнопку запуска
     public Button pauseButton; // —сылка на кнопку паузы
     public Button resumeButton; // —сылка на кнопку возобновлени€
     private bool isTimerRunning = false;
     private bool isTimerPaused = false;
+
     public TMP_Text coinstext;
     public GameObject Panel_end;
     public Image GameOver;
@@ -27,7 +28,7 @@ public class TimerScript : MonoBehaviour
     void Start()
     {
         timesUpText.SetActive(false);
-        fadeImage.gameObject.SetActive(false); // Hide the fade image initially
+        //fadeImage.gameObject.SetActive(false); // Hide the fade image initially
         timerBar = GetComponent<Image>();
         timeLeft = maxTime;
 
@@ -64,9 +65,8 @@ public class TimerScript : MonoBehaviour
     IEnumerator EndDayRoutine()
     {
         yield return new WaitForSeconds(2); // Display "The day is over" text for 2 seconds
-        StartCoroutine(FadeToBlack());
+        //StartCoroutine(FadeToBlack());
         ShowResults();
-
     }
 
     void ShowResults()
@@ -86,8 +86,7 @@ public class TimerScript : MonoBehaviour
 
     }
 
-    IEnumerator FadeToBlack()
-
+    /*IEnumerator FadeToBlack()
     {
         fadeImage.gameObject.SetActive(true);
         Color fadeColor = fadeImage.color;
@@ -102,7 +101,7 @@ public class TimerScript : MonoBehaviour
 
         Time.timeScale = 1; // Reset time scale before changing the scene
         //SceneManager.LoadScene("MainMenu"); // Assuming you have a MainMenu scene
-    }
+    }*/
 
     void StartTimer()
     {

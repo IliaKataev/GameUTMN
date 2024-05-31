@@ -4,6 +4,7 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class ShakerManager : MonoBehaviour
 {
@@ -19,7 +20,13 @@ public class ShakerManager : MonoBehaviour
     public Button serveButton;
     public Image drinkImage;
     public Sprite originalDrinkImageSprite;
+
+    public Button nextButtonTrain;
     public GameObject Panel;
+    public Image GameOver;
+    public Sprite Goodgame;
+    public Sprite Badgame;
+    private bool isGoodDrink = false;
 
     void Start()
     {
@@ -44,11 +51,28 @@ public class ShakerManager : MonoBehaviour
             UpdateCoinsText();
             Reset();
             ShakeImageOnButtonPress.isShakeButtonPressed = false;
-            if (SceneManager.GetActiveScene().name=="TrainMD")
+            if (SceneManager.GetActiveScene().name == "TrainMD")
             {
-                if (countMakeOrder == 1) { Panel.SetActive(true); }
+                if (countMakeOrder == 1)
+                {
+                    StartCoroutine(ShowPanelWithDelay());
+                }
             }
-            
+        }
+    }
+
+    IEnumerator ShowPanelWithDelay()
+    {
+        yield return new WaitForSeconds(1); // Ждем 1 секунды
+        Panel.SetActive(true); // Активируем панель после задержки
+        if (isGoodDrink)
+        {
+            GameOver.sprite = Goodgame;
+        }
+        else 
+        {
+            GameOver.sprite = Badgame;
+            nextButtonTrain.gameObject.SetActive(false);
         }
     }
 
@@ -124,6 +148,7 @@ public class ShakerManager : MonoBehaviour
         Debug.Log(currentStickerName + " - название стикера");
         int totalMaxCoins = 0;
         int totalpenalty = 0;
+
         foreach (var recipe in craftRecipe.recipes)
         {
             if (currentStickerName == recipe.NameRecipe)
@@ -140,15 +165,19 @@ public class ShakerManager : MonoBehaviour
                         if (ingredientShaker.NameIngredient == ingredientTrue.NameIngredient) 
                         {
                             count += 15;
+                            isGoodDrink = true;
+                            Debug.Log($"верно - {ingredientShaker.NameIngredient}");
                         }
                         else
                         {
                             totalpenalty += 15; //здесь он считает сколько раз мы ошиблись 
+                            Debug.Log($"Не верно - {ingredientShaker.NameIngredient}");
                         }
                     }
                 }
                 if (totalMaxCoins < count)
                 {
+                    if (totalpenalty > 0) { isGoodDrink = false; }
                     count -= totalpenalty; //вычитает нашу ошибку из того что мы заработали
                     if (count < 0) count = 0;
                 }

@@ -2697,7 +2697,7 @@ GameObject:
   - component: {fileID: 250254382}
   - component: {fileID: 250254381}
   m_Layer: 5
-  m_Name: "\u0432\u044B\u0431\u0440\u0430\u0442\u044C \u0443\u0440\u043E\u0432\u0435\u043D\u044C"
+  m_Name: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u0438\u0433\u0440\u0430\u0442\u044C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8375,7 +8375,11 @@ MonoBehaviour:
   serveButton: {fileID: 1089831342}
   drinkImage: {fileID: 343218724}
   originalDrinkImageSprite: {fileID: 21300000, guid: dcb348c3f03cc25409455fe4ccd2d8ed, type: 3}
+  nextButtonTrain: {fileID: 250254381}
   Panel: {fileID: 16348912}
+  GameOver: {fileID: 1521713523}
+  Goodgame: {fileID: 21300000, guid: f3430227571f3774998d946f3c62672f, type: 3}
+  Badgame: {fileID: 21300000, guid: 262ea2ab06f846444892c9bfe365c960, type: 3}
 --- !u!1 &1213544577
 GameObject:
   m_ObjectHideFlags: 0

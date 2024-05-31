@@ -1149,6 +1149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df926095fb73b14f9fe2a379b722ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countScene: 1
 --- !u!95 &1515785849
 Animator:
   serializedVersion: 5
