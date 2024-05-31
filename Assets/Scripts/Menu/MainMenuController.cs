@@ -9,13 +9,13 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void LoadGame()
+    public void OpenSettings()
     {
-        // Реализация загрузки сохранений (пока оставим заглушку)
-        Debug.Log("Открытие оверлея с сохранениями или сообщение 'Начните новую игру!'");
+        // Реализация открытия настроек (пока оставим заглушку)
+        Debug.Log("Открытие оверлея с настройками");
     }
 
-    public void OpenSettings()
+    public void OpenResultTable()
     {
         // Реализация открытия настроек (пока оставим заглушку)
         Debug.Log("Открытие оверлея с настройками");

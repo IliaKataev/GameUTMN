@@ -49,6 +49,7 @@ public class ShakerManager : MonoBehaviour
             Debug.Log($"{countMakeOrder} - заказы, которые мы сделали");
             SetDrinkImage();
             UpdateCoinsText();
+            isResetFromServe = true;
             Reset();
             ShakeImageOnButtonPress.isShakeButtonPressed = false;
             if (SceneManager.GetActiveScene().name == "TrainMD")
@@ -58,6 +59,19 @@ public class ShakerManager : MonoBehaviour
                     StartCoroutine(ShowPanelWithDelay());
                 }
             }
+        }
+        else
+        {   
+            if(shaker.Count > 0) 
+            {
+                // Логика для тряски и подсветки кнопки
+                FindObjectOfType<ShakeButtonEffect>().TriggerShakeAndHighlight();
+            }
+            else
+            {
+                FindObjectOfType<ShakePanelEffect>().TriggerShake();
+            }
+            
         }
     }
 
@@ -87,7 +101,8 @@ public class ShakerManager : MonoBehaviour
 
                 if (drinkImage.sprite == recipe.StickerImage)
                 {
-                    isDrinkReady = true; break;
+                    isDrinkReady = true;
+                    break;
                 }
             }
         }
@@ -103,6 +118,7 @@ public class ShakerManager : MonoBehaviour
                     {
                         shaker.Add(ingredient);
                         Debug.Log("Добавлен " + ingredientName + " в шейкер");
+                        ShakeImageOnButtonPress.isShakeButtonPressed = false;
                         return;
                     }
                 }
@@ -195,10 +211,19 @@ public class ShakerManager : MonoBehaviour
         Debug.Log(currentStickerName + "В шейкере");
     }
 
+    private bool isResetFromServe = false;
+
     public void Reset()
     {
+        if (!isResetFromServe)
+        {
+            // Запускаем анимацию шейкера
+            FindObjectOfType<ShakerResetAnimation>().StartShakerAnimation();
+        }
+
         shaker.Clear();
         Debug.Log("Пуст шейкер");
+        isResetFromServe = false; // Сбрасываем флаг после выполнения метода
     }
 
     void UpdateCoinsText()
