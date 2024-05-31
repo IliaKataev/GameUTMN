@@ -1,15 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System;
 
 public class ShakerManager : MonoBehaviour
 {
     public CraftRecipe craftRecipe; //ссылка на компонент
-    private List<Ingredient> shaker = new List<Ingredient>();
+    public StickerManager stickerManager; //ссылка на компонент
 
-    public void Start()
+    private List<Ingredient> shaker = new List<Ingredient>();
+    private static int coins;
+    private string currentStickerName;
+
+    void Start()
     {
-        Debug.Log("Мы зашли - это работает!");
+        Debug.Log("ShakerManager стартовал");
+        GetStickerName();
     }
 
     public void AddIngredient(string ingredientName)
@@ -26,23 +31,53 @@ public class ShakerManager : MonoBehaviour
                 }
             }
         }
-        DisplayCurrentIngredients();
     }
 
-    void DisplayCurrentIngredients()
+    public void Serve()
     {
-        if (shaker.Count == 0)
+        CheckIngredients();
+        Debug.Log(coins);
+        Reset();
+        stickerManager.SetRandomSticker();
+        GetStickerName();
+        stickerManager.DisplayRecipe();
+    }
+
+    void CheckIngredients()
+    {
+        Debug.Log(currentStickerName + " название стикера");
+        foreach (var recipe in craftRecipe.recipes)
         {
-            Debug.Log("Ничего нет.");
-        }
-        else
-        {
-            Debug.Log("Текущие ингредиенты в шейкере:");
-            foreach (var ingredient in shaker)
+            if (currentStickerName == recipe.NameRecipe)
             {
-                Debug.Log(ingredient + ": " + ingredient);
+                int maxCoins = 0;
+                int totalMaxCoins = 0;
+                int count = 0 ;
+                foreach (var ingredientTrue in recipe.Ingredients)
+                {
+                    maxCoins = ingredientTrue.CountIngredient;
+                    totalMaxCoins += maxCoins;
+
+                    foreach (var ingredientShaker in shaker)
+                    {
+                        if (ingredientShaker.NameIngredient == ingredientTrue.NameIngredient) // сок
+                        {
+                            count += 1;
+                        }
+                    }
+                }
+                coins += count;
+                Debug.Log(coins + " заработанное");
+                Debug.Log(totalMaxCoins + " общее максимальное");
             }
         }
+    }
+
+
+    void GetStickerName()
+    {
+        currentStickerName = stickerManager.GetCurrentStickerName();
+        Debug.Log(currentStickerName + "В шейкере");
     }
 
     public void Reset()
@@ -51,3 +86,5 @@ public class ShakerManager : MonoBehaviour
         Debug.Log("Пуст шейкер");
     }
 }
+
+
