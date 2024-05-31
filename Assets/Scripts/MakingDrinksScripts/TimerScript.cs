@@ -5,11 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class TimerScript : MonoBehaviour
 {
-    Image timerBar;
+    public Image timerBar;
     public float maxTime = 5f; // Set this to 600 for 10 minutes
     float timeLeft;
     public GameObject timesUpText;
     public Image fadeImage; // UI Image object to handle the fade effect
+    public Button startButton; // —сылка на кнопку запуска
+    public Button pauseButton; // —сылка на кнопку паузы
+    public Button resumeButton; // —сылка на кнопку возобновлени€
+    private bool isTimerRunning = false;
+    private bool isTimerPaused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,17 +23,31 @@ public class TimerScript : MonoBehaviour
         fadeImage.gameObject.SetActive(false); // Hide the fade image initially
         timerBar = GetComponent<Image>();
         timeLeft = maxTime;
+
+
+        if (startButton != null)
+        {
+            startButton.onClick.AddListener(StartTimer);
+        }
+        if (pauseButton != null)
+        {
+            pauseButton.onClick.AddListener(PauseTimer);
+        }
+        if (resumeButton != null)
+        {
+            resumeButton.onClick.AddListener(ResumeTimer);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timeLeft > 0)
+        if (isTimerRunning && !isTimerPaused && timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
             timerBar.fillAmount = timeLeft / maxTime;
         }
-        else
+        else if (timeLeft <= 0)
         {
             timesUpText.SetActive(true);
             StartCoroutine(EndDayRoutine());
@@ -56,5 +75,21 @@ public class TimerScript : MonoBehaviour
 
         Time.timeScale = 1; // Reset time scale before changing the scene
         SceneManager.LoadScene("MainMenu"); // Assuming you have a MainMenu scene
+    }
+
+    void StartTimer()
+    {
+        isTimerRunning = true;
+        isTimerPaused = false;
+    }
+
+    void PauseTimer()
+    {
+        isTimerPaused = true;
+    }
+
+    void ResumeTimer()
+    {
+        isTimerPaused = false;
     }
 }

@@ -1093,9 +1093,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c69c7cf04275a43b1a27d88520c1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 5
-  timesUpText: {fileID: 0}
-  fadeImage: {fileID: 0}
+  timerBar: {fileID: 204076326}
+  maxTime: 360
+  timesUpText: {fileID: 1945477003}
+  fadeImage: {fileID: 973516603}
+  startButton: {fileID: 1942127753}
+  pauseButton: {fileID: 484885088}
+  resumeButton: {fileID: 799906357}
 --- !u!114 &204076326
 MonoBehaviour:
   m_ObjectHideFlags: 0
