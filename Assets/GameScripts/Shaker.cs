@@ -12,6 +12,7 @@ public class ShakerManager : MonoBehaviour
     private List<Ingredient> shaker = new List<Ingredient>();
     private static int coins;
     private string currentStickerName;
+    private int countMakeOrder;
 
     public TMP_Text coinsText;
     public Button serveButton;
@@ -27,14 +28,20 @@ public class ShakerManager : MonoBehaviour
         {
             serveButton.onClick.AddListener(ChangeDrinkImage);
         }
-
-
     }
 
-    void ChangeDrinkImage()
+    public void ChangeDrinkImage() //это для проверки напитка и добавление очков - кнопнка подать
     {
-
-        SetDrinkImage();
+        if (shaker.Count > 0) // Условие проверяет, что в шейкере есть ингредиенты и только при такой ситуации мы можем подать
+        {
+            countMakeOrder++;
+            CheckIngredients();
+            Debug.Log($"{coins} - наши очки");
+            Debug.Log($"{countMakeOrder} - заказы, которые мы сделали");
+            SetDrinkImage();
+            UpdateCoinsText();
+            Reset();
+        }
     }
 
     public void AddIngredient(string ingredientName)
@@ -53,20 +60,16 @@ public class ShakerManager : MonoBehaviour
         }
     }
 
-    public void Serve()
+    public void Serve() // это для смены стикера - кнопка новый заказ
     {
         if (drinkImage != null && originalDrinkImageSprite != null)
         {
             drinkImage.sprite = originalDrinkImageSprite;
         }
-        CheckIngredients();
-        Debug.Log(coins);
-        Reset();
+
         stickerManager.SetRandomSticker();
         GetStickerName();
         stickerManager.DisplayRecipe();
-        UpdateCoinsText();
-
     }
 
     void SetDrinkImage()
@@ -88,30 +91,40 @@ public class ShakerManager : MonoBehaviour
 
     void CheckIngredients()
     {
-        Debug.Log(currentStickerName + " название стикера");
+        Debug.Log(currentStickerName + " - название стикера");
+        int totalMaxCoins = 0;
+        int totalpenalty = 0;
         foreach (var recipe in craftRecipe.recipes)
         {
             if (currentStickerName == recipe.NameRecipe)
             {
                 int maxCoins = 0;
-                int totalMaxCoins = 0;
                 int count = 0;
                 foreach (var ingredientTrue in recipe.Ingredients)
                 {
-                    maxCoins = ingredientTrue.CountIngredient;
+                    maxCoins = ingredientTrue.CountIngredient * 15;
                     totalMaxCoins += maxCoins;
 
                     foreach (var ingredientShaker in shaker)
                     {
-                        if (ingredientShaker.NameIngredient == ingredientTrue.NameIngredient) // сок
+                        if (ingredientShaker.NameIngredient == ingredientTrue.NameIngredient) 
                         {
-                            count += 1;
+                            count += 15;
+                        }
+                        else
+                        {
+                            totalpenalty += 15; //здесь он считает сколько раз мы ошиблись 
                         }
                     }
                 }
-                coins += count;
-                Debug.Log(coins + " заработанное");
-                Debug.Log(totalMaxCoins + " общее максимальное");
+                if (totalMaxCoins < count)
+                {
+                    count -= totalpenalty; //вычитает нашу ошибку из того что мы заработали
+                    if (count < 0) count = 0;
+                }
+                coins += count; //прибавляет наши очки
+                //Debug.Log(coins + " заработанное");
+                //Debug.Log(totalMaxCoins + " общее максимальное");
             }
         }
     }
@@ -133,7 +146,7 @@ public class ShakerManager : MonoBehaviour
     {
         if (coinsText != null)
         {
-            coinsText.text = "Монеты: " + coins;
+            coinsText.text = $"{coins}";
         }
     }
 }
