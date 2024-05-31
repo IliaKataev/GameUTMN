@@ -47,17 +47,39 @@ public class ShakerManager : MonoBehaviour
 
     public void AddIngredient(string ingredientName)
     {
-        foreach (var recipe in craftRecipe.recipes)
+        // ѕровер€ем, €вл€етс€ ли текущий напиток готовым - это нужно, чтобы мы не ложили игредиенты, если наш напиток готов
+        bool isDrinkReady = false;
+        foreach (var recipe in craftRecipe.resultsDrink)
         {
-            foreach (var ingredient in recipe.Ingredients)
+            if (currentStickerName == recipe.NameRecipe)
             {
-                if (ingredient.NameIngredient == ingredientName)
+
+                if (drinkImage.sprite == recipe.StickerImage)
                 {
-                    shaker.Add(ingredient);
-                    Debug.Log("ƒобавлен " + ingredientName + " в шейкер");
-                    return;
+                    isDrinkReady = true; break;
                 }
             }
+        }
+
+        if (!isDrinkReady) //по сути если у нас спрайт шейкера, то добавл€ем
+        {
+            // ƒобавл€ем ингредиент в шейкер
+            foreach (var recipe in craftRecipe.recipes)
+            {
+                foreach (var ingredient in recipe.Ingredients)
+                {
+                    if (ingredient.NameIngredient == ingredientName)
+                    {
+                        shaker.Add(ingredient);
+                        Debug.Log("ƒобавлен " + ingredientName + " в шейкер");
+                        return;
+                    }
+                }
+            }
+        }
+        else //если у нас спрайт напитка готового, то нельз€ ничего добавить
+        {
+            Debug.Log("Ќельз€ добавить ингредиент, напиток готов");
         }
     }
 
@@ -73,7 +95,7 @@ public class ShakerManager : MonoBehaviour
         stickerManager.DisplayRecipe();
     }
 
-    void SetDrinkImage()
+    void SetDrinkImage() //изменение на спрайт готового напитка
     {
 
         foreach (var recipe in craftRecipe.resultsDrink)
