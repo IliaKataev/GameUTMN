@@ -61,6 +61,8 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+
+
     void EndDialogue()
     {
         SceneManager.LoadScene("levels"); // Переход на следующую сцену

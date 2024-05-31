@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System;
 
 public class ShakerManager : MonoBehaviour
 {
@@ -8,12 +8,13 @@ public class ShakerManager : MonoBehaviour
     public StickerManager stickerManager; //ссылка на компонент
 
     private List<Ingredient> shaker = new List<Ingredient>();
-    private string currentStickerName = StickerManager.currentStickerName;
-    private int coins;
+    private static int coins;
+    private string currentStickerName;
 
-    public void Start()
+    void Start()
     {
-        Debug.Log("Мы зашли - это работает!");
+        Debug.Log("ShakerManager стартовал");
+        GetStickerName();
     }
 
     public void AddIngredient(string ingredientName)
@@ -34,76 +35,50 @@ public class ShakerManager : MonoBehaviour
 
     public void Serve()
     {
-        if (CheckIngredients())
-        {
-            Debug.Log("Все круто!");
-            //добавить очки
-            Reset();
-        }
-        else
-        {
-            Debug.Log("Все не круто!");
-            Reset();
-        }
+        CheckIngredients();
+        Debug.Log(coins);
+        Reset();
         stickerManager.SetRandomSticker();
+        GetStickerName();
         stickerManager.DisplayRecipe();
     }
 
-    bool CheckIngredients()
+    void CheckIngredients()
     {
+        Debug.Log(currentStickerName + " название стикера");
         foreach (var recipe in craftRecipe.recipes)
         {
             if (currentStickerName == recipe.NameRecipe)
             {
-                if (recipe.Ingredients.Count != shaker.Count) // Добавлена проверка количества ингредиентов
-                {
-                    return false;
-                }
-
+                int maxCoins = 0;
+                int totalMaxCoins = 0;
+                int count = 0 ;
                 foreach (var ingredientTrue in recipe.Ingredients)
                 {
-                    bool ingredientFound = false;
+                    maxCoins = ingredientTrue.CountIngredient;
+                    totalMaxCoins += maxCoins;
 
                     foreach (var ingredientShaker in shaker)
                     {
-                        if (ingredientShaker.NameIngredient == ingredientTrue.NameIngredient && 
-                            ingredientShaker.CountIngredient == ingredientTrue.CountIngredient) 
+                        if (ingredientShaker.NameIngredient == ingredientTrue.NameIngredient) // сок
                         {
-                            ingredientFound = true;
-                            break;
+                            count += 1;
                         }
                     }
-
-                    if (!ingredientFound)
-                    {
-                        return false;
-                    }
                 }
-
-                return true;
+                coins += count;
+                Debug.Log(coins + " заработанное");
+                Debug.Log(totalMaxCoins + " общее максимальное");
             }
         }
-
-        return false;
     }
 
 
-    /*
-        void DisplayCurrentIngredients()
-        {
-            if (shaker.Count == 0)
-            {
-                Debug.Log("Ничего нет.");
-            }
-            else
-            {
-                Debug.Log("Текущие ингредиенты в шейкере:");
-                foreach (var ingredient in shaker)
-                {
-                    Debug.Log(ingredient.NameIngredient + ": " + ingredient.CountIngredient);
-                }
-            }
-        }*/
+    void GetStickerName()
+    {
+        currentStickerName = stickerManager.GetCurrentStickerName();
+        Debug.Log(currentStickerName + "В шейкере");
+    }
 
     public void Reset()
     {
@@ -111,3 +86,5 @@ public class ShakerManager : MonoBehaviour
         Debug.Log("Пуст шейкер");
     }
 }
+
+
