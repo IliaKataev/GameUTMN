@@ -271,7 +271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &21228193
 RectTransform:
   m_ObjectHideFlags: 0
@@ -787,8 +787,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -766.566, y: 6.566}
-  m_SizeDelta: {x: 411.1979, y: 411.1979}
+  m_AnchoredPosition: {x: -755.338, y: 1.331}
+  m_SizeDelta: {x: 416.522, y: 413.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &81997649
 MonoBehaviour:
@@ -1688,7 +1688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &204076324
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1844,7 +1844,6 @@ RectTransform:
   m_Children:
   - {fileID: 1374588035}
   - {fileID: 1945477006}
-  - {fileID: 204076324}
   - {fileID: 1416033273}
   - {fileID: 1665185435}
   - {fileID: 973516602}
@@ -1852,6 +1851,7 @@ RectTransform:
   - {fileID: 419138771}
   - {fileID: 1246720695}
   - {fileID: 40235551}
+  - {fileID: 204076324}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4542,37 +4542,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553495502}
   m_CullTransparentMesh: 1
---- !u!1 &572110124
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 572110126}
-  m_Layer: 0
-  m_Name: OrderManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &572110126
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572110124}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 918.3957, y: 515.03723, z: 4.7903347}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &581271553
 GameObject:
   m_ObjectHideFlags: 0
@@ -8845,7 +8814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.06666667}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14229,6 +14198,5 @@ SceneRoots:
   - {fileID: 824973447}
   - {fileID: 206881706}
   - {fileID: 850874605}
-  - {fileID: 572110126}
   - {fileID: 270500196}
   - {fileID: 1001972581}
