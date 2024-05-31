@@ -40,11 +40,11 @@ public class GameRulesPanel : MonoBehaviour
         currentIndex++;
         ShowExplanation(currentIndex);
 
-        // Если все объяснения пройдены, скрыть кнопку "Следующее" и показать кнопку "Начать"
-        if (currentIndex >= explanationButtons.Count)
+        // Если все объяснения пройдены, скрыть кнопку "Следующее" 
+        if (currentIndex >= explanationButtons.Count-1)
         {
             nextButton.gameObject.SetActive(false);
-            startButton.gameObject.SetActive(true);
+            //startButton.gameObject.SetActive(true);
         }
     }
 

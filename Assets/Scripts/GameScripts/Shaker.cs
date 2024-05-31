@@ -3,6 +3,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ShakerManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class ShakerManager : MonoBehaviour
     public StickerManager stickerManager; //ссылка на компонент
 
     private List<Ingredient> shaker = new List<Ingredient>();
-    private static int coins;
+    public static int coins;
     private string currentStickerName;
     private int countMakeOrder;
 
@@ -18,6 +19,7 @@ public class ShakerManager : MonoBehaviour
     public Button serveButton;
     public Image drinkImage;
     public Sprite originalDrinkImageSprite;
+    public GameObject Panel;
 
     void Start()
     {
@@ -42,6 +44,11 @@ public class ShakerManager : MonoBehaviour
             UpdateCoinsText();
             Reset();
             ShakeImageOnButtonPress.isShakeButtonPressed = false;
+            if (SceneManager.GetActiveScene().name=="TrainMD")
+            {
+                if (countMakeOrder == 1) { Panel.SetActive(true); }
+            }
+            
         }
     }
 

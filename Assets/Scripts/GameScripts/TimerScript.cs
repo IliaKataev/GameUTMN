@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class TimerScript : MonoBehaviour
 {
@@ -15,6 +17,11 @@ public class TimerScript : MonoBehaviour
     public Button resumeButton; // —сылка на кнопку возобновлени€
     private bool isTimerRunning = false;
     private bool isTimerPaused = false;
+    public TMP_Text coinstext;
+    public GameObject Panel_end;
+    public Image GameOver;
+    public Sprite Goodgame;
+    public Sprite Badgame;
 
     // Start is called before the first frame update
     void Start()
@@ -58,9 +65,29 @@ public class TimerScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2); // Display "The day is over" text for 2 seconds
         StartCoroutine(FadeToBlack());
+        ShowResults();
+
+    }
+
+    void ShowResults()
+    {
+        Panel_end.SetActive(true);
+
+        ShakerManager shakerManager =FindAnyObjectByType<ShakerManager>();
+        if (shakerManager!=null)
+        {
+            coinstext.text= $"{ShakerManager.coins}";
+            if (ShakerManager.coins >= 100)
+            {
+                GameOver.sprite =Goodgame;
+            }
+            else { GameOver.sprite = Badgame; }
+        }
+
     }
 
     IEnumerator FadeToBlack()
+
     {
         fadeImage.gameObject.SetActive(true);
         Color fadeColor = fadeImage.color;
@@ -74,7 +101,7 @@ public class TimerScript : MonoBehaviour
         }
 
         Time.timeScale = 1; // Reset time scale before changing the scene
-        SceneManager.LoadScene("MainMenu"); // Assuming you have a MainMenu scene
+        //SceneManager.LoadScene("MainMenu"); // Assuming you have a MainMenu scene
     }
 
     void StartTimer()
