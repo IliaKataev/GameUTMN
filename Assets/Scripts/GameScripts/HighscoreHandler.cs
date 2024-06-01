@@ -21,12 +21,11 @@ public class HighscoreHandler : MonoBehaviour
     {
         highscoreList = FileHandler.ReadListFromJSON<HighscoreElement>(filename);
 
-        while(highscoreList.Count > maxCount)
+        while (highscoreList.Count > maxCount)
         {
             highscoreList.RemoveAt(maxCount);
         }
 
-        if(onHighscoreListChanged != null)
         if (onHighscoreListChanged != null)
         {
             onHighscoreListChanged.Invoke(highscoreList);
@@ -45,8 +44,9 @@ public class HighscoreHandler : MonoBehaviour
 
     public void AddHighscoresIfPossible(HighscoreElement element)
     {
+        for (int i = 0; i < maxCount; i++)
         {
-            if(i >= highscoreList.Count || element.points > highscoreList[i].points)
+            if (i >= highscoreList.Count || element.points > highscoreList[i].points)
             {
                 highscoreList.Insert(i, element);
 
@@ -63,6 +63,7 @@ public class HighscoreHandler : MonoBehaviour
                 }
                 break;
             }
+
         }
     }
 }
