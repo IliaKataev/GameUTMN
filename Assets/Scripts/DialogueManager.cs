@@ -7,22 +7,29 @@ public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;
     public float typingSpeed = 0.1f;
-    public string dialogueFilePath = "Assets/bartender/BIM.txt";
 
-    private string[] dialogues;
+    private string[] dialogues = new string[]
+    {
+        "Привет, друг!",
+        "Ты случаем зашел сюда не из-за чемпионата барменов?",
+        "Если у тебя нет опыта, то мы тебя научим и ты можешь попробовать свои силы в деле.",
+        "Выбери уровень - Стажер - чтобы пройти обучение.",
+        "Если ты все знаешь, выбери новичок или эксперт и приступай к заказам.",
+        "Удачи, мой дорогой друг!"
+    };
+
     private int currentDialogueIndex = 0;
     private bool isTyping = false;
 
     void Start()
     {
-        LoadDialoguesFromFile(dialogueFilePath);
         StartCoroutine(DisplayNextDialogue());
     }
 
     void Update()
     {
-        // Проверяем, был ли произведен клик левой кнопкой мыши
-        if ((Input.GetKeyDown(KeyCode.Space)|| Input.GetMouseButtonDown(0) )&& !isTyping )
+        // Проверяем, был ли произведен клик левой кнопкой мыши или нажата клавиша пробел
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isTyping)
         {
             if (currentDialogueIndex < dialogues.Length - 1)
             {
@@ -47,21 +54,6 @@ public class DialogueManager : MonoBehaviour
         }
         isTyping = false;
     }
-
-    void LoadDialoguesFromFile(string filePath)
-    {
-        if (System.IO.File.Exists(filePath))
-        {
-            string[] lines = System.IO.File.ReadAllLines(filePath);
-            dialogues = lines;
-        }
-        else
-        {
-            Debug.LogError("Файл с репликами не найден: " + filePath);
-        }
-    }
-
-
 
     void EndDialogue()
     {
