@@ -27,6 +27,7 @@ public class HighscoreHandler : MonoBehaviour
         }
 
         if(onHighscoreListChanged != null)
+        if (onHighscoreListChanged != null)
         {
             onHighscoreListChanged.Invoke(highscoreList);
         }
@@ -44,7 +45,6 @@ public class HighscoreHandler : MonoBehaviour
 
     public void AddHighscoresIfPossible(HighscoreElement element)
     {
-        for(int i = 0; i < maxCount; i++)
         {
             if(i >= highscoreList.Count || element.points > highscoreList[i].points)
             {
@@ -63,7 +63,6 @@ public class HighscoreHandler : MonoBehaviour
                 }
                 break;
             }
-            
         }
     }
 }
