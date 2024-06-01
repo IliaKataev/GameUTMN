@@ -11,6 +11,8 @@ public class ShakerManager : MonoBehaviour
     public CraftRecipe craftRecipe; //ссылка на компонент
     public StickerManager stickerManager; //ссылка на компонент
 
+    public static string playerName;
+
     private List<Ingredient> shaker = new List<Ingredient>();
     public static int coins;
     private string currentStickerName;
@@ -21,12 +23,16 @@ public class ShakerManager : MonoBehaviour
     public Image drinkImage;
     public Sprite originalDrinkImageSprite;
 
+
     public Button nextButtonTrain;
     public GameObject Panel;
     public Image GameOver;
     public Sprite Goodgame;
     public Sprite Badgame;
     private bool isGoodDrink = false;
+
+
+    public HighscoreHandler highscoreHandler;
 
     void Start()
     {
@@ -69,7 +75,11 @@ public class ShakerManager : MonoBehaviour
             }
             else
             {
-                FindObjectOfType<ShakePanelEffect>().TriggerShake();
+                if (shaker.Count == 0)
+                {
+                    FindObjectOfType<ShakePanelEffect>().TriggerShake();
+                }
+                
             }
             
         }
@@ -202,8 +212,20 @@ public class ShakerManager : MonoBehaviour
                 //Debug.Log(totalMaxCoins + " общее максимальное");
             }
         }
+        UpdateHighscore();
     }
 
+    public void UpdateHighscore() // Добавлено
+    {
+        if (highscoreHandler != null)
+        {
+            highscoreHandler.AddHighscoresIfPossible(new HighscoreElement(playerName, coins));
+        }
+        else
+        {
+            Debug.LogWarning("HighscoreHandler not attached to an object");
+        }
+    }
 
     void GetStickerName()
     {
@@ -215,10 +237,15 @@ public class ShakerManager : MonoBehaviour
 
     public void Reset()
     {
-        if (!isResetFromServe)
+        if (!isResetFromServe && shaker.Count > 0)
         {
             // Запускаем анимацию шейкера
             FindObjectOfType<ShakerResetAnimation>().StartShakerAnimation();
+        }
+        else
+        {
+            if(shaker.Count == 0) { FindObjectOfType<ShakePanelEffect>().TriggerShake(); }
+            
         }
 
         shaker.Clear();
